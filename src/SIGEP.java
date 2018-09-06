@@ -173,7 +173,7 @@ public class SIGEP {
                         "Nª: " + investidores[k].getKey() + "\n" +
                         "Nome: " + investidores[k].getNome() + "\n" +
                         "Total Investido: " + investidores[k].getQuantidadeInvestido() + "\n" +
-                        "Empreendedores apoiados:" + "\n" + "\n";
+                        "Empreendedores apoiados: \n" + investidores[k].getMeusProjetosInvestidos() + "\n";
                         k++;
             }
         }
@@ -182,7 +182,7 @@ public class SIGEP {
 
     private String listarIdeias(int key){
         if(ideia2[key].getKey() == 0)
-            return listar1Ideias(key) + "\nNão há 2º projeto a exibir";
+            return listar1Ideias(key) + "\nNão há 2º projeto a exibir\n";
         return listar1Ideias(key) +"\n"+ listar2Ideias(key);
     }
 
@@ -204,6 +204,60 @@ public class SIGEP {
         return listar2Ideias;
     }
 
+   private void cadastrarInvestimento(){
+       int i = 1, k = 1;
+       double montante = 0;
+       
+        while(i != investidor.contador){
+            System.out.println("ID: " + investidores[i].getNome() +
+                    "Nome: " + investidores[i].getNome());
+            i++;
+        }
+        
+        int choose = 0;
+        String valor = "", mont = "";
+        
+        try{
+            do{
+                valor = JOptionPane.showInputDialog(null, "Digite o ID do investidor(Listado no terminal)");
+            }while(valor.equals("")||valor.equals(" "));
+               choose = Integer.parseInt(valor);
+        }catch(NumberFormatException x){
+            JOptionPane.showMessageDialog(null, "Digite um valor INTEIRO valido");
+        }finally{
+            choose = Integer.parseInt(valor);
+        }
+        
+        while(k != empreendedor.contador){
+            System.out.println("ID:" + empreendedores[k].getKey() + 
+                    "Nome: " + empreendedores[k].getNome());
+            k++;
+        }
+
+        try{
+            do{
+                valor = JOptionPane.showInputDialog(null, "Digite o numero ID do projeto a ser investido(Verifique terminal)");
+            }while( valor.equals("")||valor.equals(" "));
+               choose = Integer.parseInt(valor);
+            do{
+               mont = JOptionPane.showInputDialog(null, "Digite o valor a ser investido neste projeto");
+            }while( valor.equals("")||valor.equals(" "));
+                montante = Double.parseDouble(mont);
+        }catch(NumberFormatException x){
+            JOptionPane.showMessageDialog(null, "Digite um valor INTEIRO valido");
+        }finally{
+            choose = Integer.parseInt(valor);
+        }
+        
+        if(choose == empreendedores[choose].getKey()){
+             investidores[choose].setMeusProjetosInvestidos("ID: " + investidores[i].getNome() +
+                    "\nNome: " + investidores[i].getNome() + 
+                     "\nValor Investido: " + montante);
+        }
+    }
+        
+    
+    
     private void adicionar(){
         int n = 0;
         String aux = "";
@@ -241,7 +295,7 @@ public class SIGEP {
             cadastrarInvestidor();
         }
         if (menuAdicionar.equals(op4)) {
-            // cadastrarInvestimento();
+            cadastrarInvestimento();
         }
     }
 

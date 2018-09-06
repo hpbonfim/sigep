@@ -1,5 +1,5 @@
 public class Investidor {
-    private String nome, tipoInvestimento;
+    private String nome, tipoInvestimento, meusProjetosInvestidos;
     private double quantidadeInvestida;
     protected int key, contador = 0;
 
@@ -38,4 +38,14 @@ public class Investidor {
 
     protected int getKey(){return this.key;}
 
+    public String getMeusProjetosInvestidos() {
+        return meusProjetosInvestidos;
+    }
+
+    public void setMeusProjetosInvestidos(String meusProjetosInvestidos) {
+        this.meusProjetosInvestidos = meusProjetosInvestidos;
+    }
+
+    
+    
 }
